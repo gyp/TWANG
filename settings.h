@@ -11,10 +11,10 @@
 // LED Strip Setup
 #if defined(ARDUINO_AVR_MEGA2560)
 // Arduino Mega 2560
-#define DATA_PIN             3
+#define DATA_PIN             6
 #define CLOCK_PIN            4   // ignored for Neopixel
 
-#define MAX_LEDS 1000
+#define MAX_LEDS 120
 #elif defined(ARDUINO_AVR_NANO)
 // Arduino Mega 328
 #define DATA_PIN             2
@@ -36,7 +36,7 @@
 #define WS2812_CONVEYOR_BRIGHTNES  40
 #define WS2812_LAVA_OFF_BRIGHTNESS 15
 
-#define USE_LIFELEDS  // uncomment this to make Life LEDs available (not used in the B. Dring enclosure)
+// #define USE_LIFELEDS  // uncomment this to make Life LEDs available (not used in the B. Dring enclosure)
 
 // JOYSTICK
 #define JOYSTICK_ORIENTATION 1     // 0, 1 or 2 to set the angle of the joystick
@@ -55,6 +55,7 @@
 #define MAX_VOLUME           10
 #define MIN_VOLUME              0
 #define MAX_VOLUME              10
+#define NOTE_DURATION         100
 
 
 // LEVELS
@@ -82,10 +83,13 @@
 
 #define WIN_FILL_DURATION 500     // sound has a freq effect that might need to be adjusted
 #define WIN_CLEAR_DURATION 1000
-#define WIN_OFF_DURATION 1200
+
+#define WIN_OFF_DURATION 5000
+
+
 
 // SCREEN SAVER
-#define TIMEOUT              30000  // time until screen saver
+#define TIMEOUT              60000  // time until screen saver
 
 enum stripTypes{
 	strip_APA102 = 0,

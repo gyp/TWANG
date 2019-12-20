@@ -45,6 +45,10 @@
 #include "Joystick.h"
 #include "settings.h"
 
+// Music
+#include "christmas_songs.h"
+#include "pitches.h"
+
 
 // what type of sound device ....pick one
 #define USE_TONEAC
@@ -1191,8 +1195,10 @@ void SFXgameover(){
 void SFXkill(){
     twangPlayToneLen(2000, user_settings.audio_volume, 1000);
 }
+
 void SFXwin(){
-    SFXFreqSweepWarble(WIN_OFF_DURATION, millis()-stageStartTime, 40, 400, 20);
+    playChristmasSong(levelNumber, NOTE_DURATION);
+    //SFXFreqSweepWarble(WIN_OFF_DURATION, millis()-stageStartTime, 40, 400, 20);
 }
 
 void SFXbosskilled()
