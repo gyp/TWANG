@@ -42,6 +42,7 @@
 #include "Lava.h"
 #include "Boss.h"
 #include "Conveyor.h"
+#include "Joystick.h"
 #include "settings.h"
 
 
@@ -1095,6 +1096,7 @@ void screenSaverTick(){
 // ---------------------------------
 // ----------- JOYSTICK ------------
 // ---------------------------------
+ThreeButtonJoystick myJoystick = ThreeButtonJoystick(2, 3, 4);
 void getInput(){
     // This is responsible for the player movement speed and attacking.
     // You can replace it with anything you want that passes a -90>+90 value to joystickTilt
@@ -1102,27 +1104,10 @@ void getInput(){
     // For example you could use 3 momentary buttons:
         // if(digitalRead(leftButtonPinNumber) == HIGH) joystickTilt = -90;
         // if(digitalRead(rightButtonPinNumber) == HIGH) joystickTilt = 90;
-        // if(digitalRead(attackButtonPinNumber) == HIGH) joystickWobble = ATTACK_THRESHOLD;
-    int16_t ax, ay, az;
-    int16_t gx, gy, gz;
-
-    accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-    int a = (JOYSTICK_ORIENTATION == 0?ax:(JOYSTICK_ORIENTATION == 1?ay:az))/166;
-    int g = (JOYSTICK_ORIENTATION == 0?gx:(JOYSTICK_ORIENTATION == 1?gy:gz));
-
-    if(abs(a) < user_settings.joystick_deadzone) a = 0;
-    if(a > 0) a -= user_settings.joystick_deadzone;
-    if(a < 0) a += user_settings.joystick_deadzone;
-    MPUAngleSamples.add(a);
-    MPUWobbleSamples.add(g);
-
-    MPUAngleSamples.getMedian(a);
-    joystickTilt = (int8_t)a;
-    if(JOYSTICK_DIRECTION == 1) {
-        joystickTilt = 0-joystickTilt;
-    }
-    MPUWobbleSamples.getHighest(a);
-    joystickWobble = abs(a);
+        // if(digitalRead(attackButtonPinNumber) == HIGH) joystickWobble = ATTACK_THRESHOLD + 1;
+    myJoystick.readInputs();
+    joystickTilt = myJoystick.angle;
+    joystickWobble = myJoystick.buttonPressed ? ATTACK_THRESHOLD + 1 : 0;
 }
 
 // ---------------------------------
