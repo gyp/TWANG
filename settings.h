@@ -55,7 +55,7 @@
 #define MAX_VOLUME           10
 #define MIN_VOLUME              0
 #define MAX_VOLUME              10
-#define NOTE_DURATION         100
+#define NOTE_DURATION         90
 
 
 // LEVELS
@@ -63,9 +63,9 @@
 
 #define MAX_PLAYER_SPEED    10     // Max move speed of the player
 
-#define LIVES_PER_LEVEL    3
+#define LIVES_PER_LEVEL    20
 #define MIN_LIVES_PER_LEVEL 3
-#define MAX_LIVES_PER_LEVEL 9
+#define MAX_LIVES_PER_LEVEL 50
 
 #define DEFAULT_ATTACK_WIDTH 70  // Width of the wobble attack, world is 1000 wide
 #define ATTACK_DURATION     500    // Duration of a wobble attack (ms)
