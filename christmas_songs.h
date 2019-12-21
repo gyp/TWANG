@@ -1,20 +1,16 @@
 #include "toneAC.h"
 #include "pitches.h"
 
-#define MAX_SONG_LENGTH 100
-
 class Song {
     public:
-        // FIXME: kept it simple and stupid for the time being
-        // and preallocated the memory for these, also made
-        // public for easy initialization without struggling
-        // with different flavors of C++
-        int notes[MAX_SONG_LENGTH];
-        int tempos[MAX_SONG_LENGTH];
+        int *notes;
+        int *tempos;
         int length;
 
         Song(int _notes[], int _tempos[], int _length)
         {
+            notes = (int*) malloc(sizeof(int) * _length);
+            tempos = (int*) malloc(sizeof(int) * _length);
             Serial.println("SONG INIT");
             for (int i = 0; i < _length; i++)
             {
