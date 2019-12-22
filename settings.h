@@ -63,9 +63,9 @@
 
 #define MAX_PLAYER_SPEED    10     // Max move speed of the player
 
-#define LIVES_PER_LEVEL    20
-#define MIN_LIVES_PER_LEVEL 3
-#define MAX_LIVES_PER_LEVEL 50
+#define LIVES_PER_LEVEL    15
+#define MIN_LIVES_PER_LEVEL 10
+#define MAX_LIVES_PER_LEVEL 20
 
 #define DEFAULT_ATTACK_WIDTH 70  // Width of the wobble attack, world is 1000 wide
 #define ATTACK_DURATION     500    // Duration of a wobble attack (ms)
