@@ -1,5 +1,5 @@
-/* 
-  TWANG 
+/*
+  TWANG
 
   Based on original code by Critters/TWANG
 
@@ -306,43 +306,43 @@ void loadLevel(){
   cleanupLevel();
   playerAlive = 1;
 	lastLevel = false; // this gets changed on the boss level
-	
+
 	/// Defaults...OK to change the following items in the levels below
-	attack_width = DEFAULT_ATTACK_WIDTH; 
-	playerPosition = 0; 
-	
+	attack_width = DEFAULT_ATTACK_WIDTH;
+	playerPosition = 0;
+
 	/* ==== Level Editing Guide ===============
 	Level creation is done by adding to or editing the switch statement below
-	
-	You can add as many levels as you want but you must have a "case"  
+
+	You can add as many levels as you want but you must have a "case"
 	for each level. The case numbers must start at 0 and go up without skipping any numbers.
-	
+
 	Don't edit case 0 or the last (boss) level. They are special cases and editing them could
 	break the code.
-	
+
 	TWANG uses a virtual 1000 LED grid (World). It will then scale that number to your strip, so if you
 	want something in the middle of your strip use the number 500. Consider the size of your strip
 	when adding features. All time values are specified in milliseconds (1/1000 of a second)
-	
+
 	You can add any of the following features.
-	
+
 	Enemies: You add up to 10 enemies with the spawnEnemy(...) functions.
 		spawnEnemy(position, direction, speed, wobble);
-			position: Where the enemy starts 
+			position: Where the enemy starts
 			direction: If it moves, what direction does it go 0=down, 1=away
 			speed: How fast does it move. Typically 1 to 4.
 			wobble: 0=regular movement, 1=bouncing back and forth use the speed value
 				to set the length of the wobble.
-				
+
 	Spawn Pools: This generates and endless source of new enemies. 2 pools max
 		spawnPool[index].Spawn(position, rate, speed, direction, activate);
 			index: You can have up to 2 pools, use an index of 0 for the first and 1 for the second.
-			position: The location the enemies with be generated from. 
+			position: The location the enemies with be generated from.
 			rate: The time in milliseconds between each new enemy
 			speed: How fast they move. Typically 1 to 4.
 			direction: Directions they go 0=down, 1=away
 			activate: The delay in milliseconds before the first enemy
-			
+
 	Lava: You can create 4 pools of lava.
 		spawnLava(left, right, ontime, offtime, offset, state);
 			left: the lower end of the lava pool
@@ -350,26 +350,26 @@ void loadLevel(){
 			ontime: How long the lave stays on.
 			offset: the delay before the first switch
 			state: does it start on or off_dir
-	
+
 	Conveyor: You can create 2 conveyors.
 		spawnConveyor(startPoint, endPoint, speed)
 			startPoint: The close end of the conveyor
 			endPoint: The far end of the conveyor
 			speed: positive = away, negative = towards you (must be less than +/- player speed)
-	
-	===== Other things you can adjust per level ================ 
-	
+
+	===== Other things you can adjust per level ================
+
 		Player Start position:
-			playerPosition = xxx; 
-				
-			
+			playerPosition = xxx;
+
+
 		The size of the TWANG attack
 			attack_width = xxx;
-					
-	
+
+
 	*/
     switch(levelNumber){
-        case 0: // basic introduction 
+        case 0: // basic introduction
             playerPosition = 200;
             spawnEnemy(1, 0, 0, 0);
             break;
@@ -485,7 +485,7 @@ void loadLevel(){
             spawnLava(900, 950, 2200, 800, 2000, Lava::OFF);
         break;
         case 19: // (don't edit last level)
-            // Boss this should always be the last level			
+            // Boss this should always be the last level
             spawnBoss();
             break;
     }
@@ -510,7 +510,7 @@ void moveBoss(){
 /* ======================== spawn Functions =====================================
 
    The following spawn functions add items to pools by looking for an inactive
-   item in the pool. You can only add as many as the ..._COUNT. Additional attempts 
+   item in the pool. You can only add as many as the ..._COUNT. Additional attempts
    to add will be ignored.
 
    ==============================================================================
@@ -592,7 +592,7 @@ void gameOver(){
 
 void die(){
     playerAlive = 0;
-    if(levelNumber > 0) 
+    if(levelNumber > 0)
         lives--;
 
     if(lives == 0){
@@ -619,13 +619,13 @@ void tickStartup(long mm)
     if(stageStartTime+STARTUP_WIPEUP_DUR > mm) // fill to the top with green
     {
         int n = min(map(((mm-stageStartTime)), 0, STARTUP_WIPEUP_DUR, 0, user_settings.led_count), user_settings.led_count);  // fill from top to bottom
-        for(int i = 0; i<= n; i++){			
+        for(int i = 0; i<= n; i++){
             leds[i] = CRGB(0, 255, 0);
-        }		
+        }
     }
-    else if(stageStartTime+STARTUP_SPARKLE_DUR > mm) // sparkle the full green bar		
+    else if(stageStartTime+STARTUP_SPARKLE_DUR > mm) // sparkle the full green bar
     {
-        for(int i = 0; i< user_settings.led_count; i++){		 
+        for(int i = 0; i< user_settings.led_count; i++){
             if(random8(30) < 28)
             leds[i] = CRGB(0, 255, 0);  // most are green
             else {
@@ -638,12 +638,12 @@ void tickStartup(long mm)
     {
         int n = max(map(((mm-stageStartTime)), STARTUP_SPARKLE_DUR, STARTUP_FADE_DUR, 0, user_settings.led_count), 0);  // fill from top to bottom
         int brightness = max(map(((mm-stageStartTime)), STARTUP_SPARKLE_DUR, STARTUP_FADE_DUR, 255, 0), 0);
-		
-        for(int i = n; i< user_settings.led_count; i++){					 
+
+        for(int i = n; i< user_settings.led_count; i++){
             leds[i] = CRGB(0, brightness, 0);
         }
     }
-    SFXFreqSweepWarble(STARTUP_FADE_DUR, millis()-stageStartTime, 40, 400, 20);	
+    SFXFreqSweepWarble(STARTUP_FADE_DUR, millis()-stageStartTime, 40, 400, 20);
 }
 
 void tickEnemies(){
@@ -774,13 +774,13 @@ bool tickParticles(){
     for(uint8_t p = 0; p < PARTICLE_COUNT; p++){
         if(particlePool[p].Alive()){
             particlePool[p].Tick(user_settings.gravity, user_settings.bend_point);
-			
+
         if (particlePool[p]._power < 5)
         {
             brightness = (5 - particlePool[p]._power) * 10;
             leds[getLED(particlePool[p]._pos)] += CRGB(brightness, brightness/2, brightness/2);\
         }
-        else			
+        else
             leds[getLED(particlePool[p]._pos)] += CRGB(particlePool[p]._power, 0, 0);\
             stillActive = true;
         }
@@ -806,11 +806,11 @@ void tickConveyors(){
             for(led = ss; led<ee; led++){
 
                 n = (-led + (m/100)) % levels;
-                if(speed < 0) 
+                if(speed < 0)
                     n = (led + (m/100)) % levels;
 
                 b = map(n, 5, 0, 0, conveyor_brightness);
-                if(b > 0) 
+                if(b > 0)
                     leds[led] = CRGB(0, 0, b);
             }
 
@@ -828,7 +828,7 @@ void tickBossKilled(long mm) // boss funeral
     FastLED.setBrightness(255); // super bright!
 
     uint8_t brightness = 0;
-    FastLED.clear();	
+    FastLED.clear();
 
     if(stageStartTime+6500 > mm){
         gHue++;
@@ -844,7 +844,7 @@ void tickBossKilled(long mm) // boss funeral
             leds[i].setHSV(brightness, 255, 50);
         }
         SFXcomplete();
-    }else{		
+    }else{
         nextLevel();
     }
 }

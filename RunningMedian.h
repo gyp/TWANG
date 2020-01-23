@@ -1,4 +1,4 @@
-// running median filter   
+// running median filter
 //
 // usage:
 //   RunningMedian<unsigned int,32> myMedian;

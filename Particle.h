@@ -38,7 +38,7 @@ void Particle::Tick(bool USE_GRAVITY, int BEND_POINT){
         if(USE_GRAVITY && _pos > BEND_POINT) _sp -= 10;
         _power = 100 - _life;
         if(_power <= 0){
-            Kill(); 
+            Kill();
         }else{
             _pos += _sp/7.0;
             if(_pos > 1000){

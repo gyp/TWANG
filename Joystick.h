@@ -6,12 +6,12 @@
  * Simple simulation of an 1-button analog joystick with buttons that tries to be
  * more clever than just simply assigning the extremes when the buttons are
  * pressed.
- * 
+ *
  * Initialize with the pin numbers, call readInputs() as frequently as possible
  * and read the current status through the public attributes angle and buttonPressed.
- * 
+ *
  * It is absolutely not thread-safe.
- * 
+ *
  * FIXME: this is dummy at this point and just goes to the extremes
  */
 class ThreeButtonJoystick
@@ -58,7 +58,7 @@ class ThreeButtonJoystick
           Serial.print("angle: ");
           Serial.print(angle);
           Serial.print("floatangle: ");
-          Serial.print(preciseAngle);          
+          Serial.print(preciseAngle);
           Serial.print("\t timeDiff: ");
           Serial.println( (now-directionStarted) );
           #endif
@@ -70,7 +70,7 @@ class ThreeButtonJoystick
 
     int angle;
     bool buttonPressed;
-  
+
   private:
     int leftPin, middlePin, rightPin, acceleration;
     unsigned long int directionStarted = 0;
@@ -82,10 +82,10 @@ class ThreeButtonJoystick
       angle = 0;
       if (isHigh(leftPin))
         angle -= 90;
-      
+
       if (isHigh(rightPin))
         angle += 90;
-      
+
       buttonPressed = isHigh(middlePin);
     }
 };

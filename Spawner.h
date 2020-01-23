@@ -14,7 +14,7 @@ direction: 0=towards start, 1=away from start
 class Spawner
 {
   public:
-    void Spawn(int pos, int rate, uint8_t speed, bool dir, long activate);  
+    void Spawn(int pos, int rate, uint8_t speed, bool dir, long activate);
     void Kill();
     bool Alive();
     int _pos;
