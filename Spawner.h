@@ -11,23 +11,22 @@ speed: speed of the enemies it spawns
 direction: 0=towards start, 1=away from start
 
 */
-class Spawner
-{
-  public:
-    void Spawn(int pos, int rate, uint8_t speed, bool dir, long activate);
-    void Kill();
-    bool Alive();
-    int _pos;
-    int _rate;
-    uint8_t _speed;
-    bool _dir;
-    long _lastSpawned;
-    long _activate;
-  private:
-    bool _alive;
+class Spawner {
+    public:
+        void Spawn(int pos, int rate, uint8_t speed, bool dir, long activate);
+        void Kill();
+        bool Alive();
+        int _pos;
+        int _rate;
+        uint8_t _speed;
+        bool _dir;
+        long _lastSpawned;
+        long _activate;
+    private:
+        bool _alive;
 };
 
-void Spawner::Spawn(int pos, int rate, uint8_t speed, bool dir, long activate){
+void Spawner::Spawn(int pos, int rate, uint8_t speed, bool dir, long activate) {
     _pos = pos;
     _rate = rate;
     _speed = speed;
@@ -36,11 +35,11 @@ void Spawner::Spawn(int pos, int rate, uint8_t speed, bool dir, long activate){
     _alive = 1;
 }
 
-void Spawner::Kill(){
+void Spawner::Kill() {
     _alive = 0;
     _lastSpawned = 0;
 }
 
-bool Spawner::Alive(){
+bool Spawner::Alive() {
     return _alive;
 }

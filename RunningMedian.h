@@ -4,7 +4,6 @@
 //   RunningMedian<unsigned int,32> myMedian;
 //   if (myMedian.getStatus() == myMedian.OK)  myMedian.getMedian(_median);
 
-
 #ifndef RunningMedian_h
 #define RunningMedian_h
 //
@@ -55,7 +54,7 @@ public:
     STATUS getAverage(float &value) {
         if (_cnt > 0) {
             float sum = 0;
-            for (uint8_t i=0; i< _cnt; i++) sum += _ar[i];
+            for (uint8_t i = 0; i< _cnt; i++) sum += _ar[i];
             value = sum / _cnt;
             return OK;
         }
@@ -89,7 +88,7 @@ public:
     STATUS getLowest(T& value) {
         if (_cnt > 0) {
             sort();
-            value =  _as[0];
+            value = _as[0];
             return OK;
         }
         return NOK;
@@ -115,12 +114,12 @@ private:
     T _as[N];
     void sort() {
         // copy
-        for (uint8_t i=0; i< _cnt; i++) _as[i] = _ar[i];
+        for (uint8_t i = 0; i < _cnt; i++) _as[i] = _ar[i];
 
         // sort all
-        for (uint8_t i=0; i< _cnt-1; i++) {
+        for (uint8_t i = 0; i < _cnt - 1; i++) {
             uint8_t m = i;
-            for (uint8_t j=i+1; j< _cnt; j++) {
+            for (uint8_t j = i + 1; j < _cnt; j++) {
                 if (_as[j] < _as[m]) m = j;
             }
             if (m != i) {

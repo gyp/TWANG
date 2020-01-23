@@ -1,14 +1,13 @@
 #include "Arduino.h"
 
-class Conveyor
-{
-  public:
-      void Spawn(int startPoint, int endPoint, int speed);
-      void Kill();
-      int _startPoint;
-      int _endPoint;
-      int _speed;
-      bool _alive;
+class Conveyor {
+    public:
+        void Spawn(int startPoint, int endPoint, int speed);
+        void Kill();
+        int _startPoint;
+        int _endPoint;
+        int _speed;
+        bool _alive;
 };
 
 void Conveyor::Spawn(int startPoint, int endPoint, int speed){
