@@ -69,7 +69,7 @@ The game also has 3 regular LEDs for life indicators (the player gets 3 lives wh
 
 ##  Serial Port Options Menu (New!) ##
 All of the basic setup options can now be set over the serial port. An easy to use serial terminal is
-the Serial Console of the Arduino IDE. Open the Com Port that appears when you plug in the TWANG USB. 
+the Serial Console of the Arduino IDE. Open the Com Port that appears when you plug in the TWANG USB.
 
 Set it up for 115200 baud and have it add a carriage return when sending. You should see this menu.
 
