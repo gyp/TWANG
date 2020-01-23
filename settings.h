@@ -1,4 +1,4 @@
-#include "HardwareSerial.h"
+#include <HardwareSerial.h>
 #include <avr/wdt.h>
 #include <EEPROM.h>
 
@@ -50,12 +50,10 @@
 #define MIN_JOYSTICK_DEADZONE 3
 #define MAX_JOYSTICK_DEADZONE 12
 
-
 // AUDIO
 #define MAX_VOLUME           10
 #define MIN_VOLUME           0
 #define MAX_VOLUME           10
-
 
 // LEVELS
 #define VIRTUAL_WORLD_COUNT  1000
@@ -130,10 +128,9 @@ void processSerial(char inChar);
 void show_settings_menu();
 void reset_settings();
 void change_setting(char *line);
-void settings_eeprom_write();
+void settings_eeprom_read();
 void settings_eeprom_write();
 void printError(int reason);
-
 
 void reset_cpu() {
     wdt_enable(WDTO_15MS);
@@ -415,3 +412,4 @@ void printError(int reason) {
         break;
     }
 }
+

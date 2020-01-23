@@ -23,6 +23,7 @@
     Pins A5         Gyroscope SCL
 
 */
+
 #define VERSION "2018-11-18"
 
 // Required libs
@@ -67,7 +68,6 @@ uint8_t levelNumber = 0;
 
 iSin isin = iSin();
 
-
 int8_t joystickTilt = 0;              // Stores the angle of the joystick
 int joystickWobble = 0;            // Stores the max amount of wobble
 
@@ -100,7 +100,6 @@ bool lastLevel = false;
     #define LIFE_LEDS 3
     const PROGMEM int lifeLEDs[LIFE_LEDS] = {7, 6, 5}; // these numbers are Arduino GPIO numbers...this is not used in the B. Dring enclosure design
 #endif
-
 
 // POOLS
 #define ENEMY_COUNT 10
@@ -202,7 +201,7 @@ void loop() {
         if (stage == SCREENSAVER) {
             screenSaverTick();
 
-        } lse if (stage == STARTUP) {
+        } else if (stage == STARTUP) {
             if (stageStartTime+STARTUP_FADE_DUR > mm)
                 tickStartup(mm);
             else
